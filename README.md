@@ -2,7 +2,7 @@
 
 ## Usuarios
 
-Para realizar la consulta utilice el siguiente enlace [https://github.com/Algoritmos-y-Programacion-2223-3/api-proyecto/blob/e20c412e7e1dcc3b089b0594b5a42f30ac15e49b/products.json](https://github.com/Algoritmos-y-Programacion-2223-3/api-proyecto/blob/e20c412e7e1dcc3b089b0594b5a42f30ac15e49b/products.json) le devolverá una lista de json como el siguiente:
+Para realizar la consulta utilice el siguiente enlace [https://github.com/Algoritmos-y-Programacion-2223-3/api-proyecto/blob/08d4d2ce028692d71e9f8c32ea8c29ae24efe5b1/users.json](https://github.com/Algoritmos-y-Programacion-2223-3/api-proyecto/blob/08d4d2ce028692d71e9f8c32ea8c29ae24efe5b1/users.json) le devolverá una lista de json como el siguiente:
 
 ```json
 [
@@ -32,7 +32,7 @@ Para realizar la consulta utilice el siguiente enlace [https://github.com/Algori
 
 ## Posts
 
-Para realizar la consulta utilice el siguiente enlace []() le devolverá una lista de json como el siguiente:
+Para realizar la consulta utilice el siguiente enlace [https://github.com/Algoritmos-y-Programacion-2223-3/api-proyecto/blob/08d4d2ce028692d71e9f8c32ea8c29ae24efe5b1/posts.json](https://github.com/Algoritmos-y-Programacion-2223-3/api-proyecto/blob/08d4d2ce028692d71e9f8c32ea8c29ae24efe5b1/posts.json) le devolverá una lista de json como el siguiente:
 
 ```json
 [
