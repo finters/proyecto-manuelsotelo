@@ -9,6 +9,7 @@
   "author": "Jose Roberto Quevedo Gabizon",
   "license": "ISC",
   "dependencies": {
-    "@faker-js/faker": "^8.2.0"
+    "@faker-js/faker": "^8.2.0",
+    "dayjs": "^1.11.10"
   }
 }
