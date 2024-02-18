@@ -79,16 +79,40 @@ const albums = new Array(300).fill({}).map((_) => {
       height: 800,
       width: 800,
       text: name,
-      format: 'jpg'
+      format: 'jpg',
     }),
     published: faker.date.past().toISOString(),
     genre: faker.music.genre(),
     artist: faker.helpers.arrayElement(musicians).id,
-    tracklist: new Array(faker.number.int({ min: 1, max: 12 })).fill({}).map((_) => ({
-      id: faker.string.uuid(),
-      name: faker.word.words(3),
-      duration: dayjs(new Date(2024, 1, 15, 0, faker.number.int({min: 1, max: 5}), faker.number.int({min: 0, max: 59}), 0)).format('mm:ss')
-    }))
+    tracklist: new Array(faker.number.int({ min: 1, max: 12 }))
+      .fill({})
+      .map((_) => ({
+        id: faker.string.uuid(),
+        name: faker.word.words(3),
+        duration: dayjs(
+          new Date(
+            2024,
+            1,
+            15,
+            0,
+            faker.number.int({ min: 1, max: 5 }),
+            faker.number.int({ min: 0, max: 59 }),
+            0
+          )
+        ).format('mm:ss'),
+        link: faker.helpers.arrayElement([
+          'https://soundcloud.com/luk_music/meduza-control-piece-edx-jaded?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          'https://soundcloud.com/calvinharris/desire-with-sam-smith?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          'https://soundcloud.com/luk_music/elderbrook-dababy-why-do-we-shake-in-the-cold-practice-luk-mashup-remix?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          'https://soundcloud.com/luk_music/luk-feat-ellie-may-wicked-game?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          'https://soundcloud.com/ginchiestrecords/ginchy-gxd-feat-yasmin-jane-as-the-rush-comes-radio-edit?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          'https://soundcloud.com/jaxonmase/cola-x-ferrari-horses?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          'https://soundcloud.com/jerzybulx/thebusiness?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          'https://soundcloud.com/3uki/dua-lipa-houdini-3uki-remix?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          'https://soundcloud.com/luk_music/luk-feat-kimberley-dont-cha-1?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+          'https://soundcloud.com/itsproppa/proppagfys?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+        ]),
+      })),
   };
   return obj;
 });
