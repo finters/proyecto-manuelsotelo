@@ -1,135 +1,137 @@
 const fs = require('fs');
-const dayjs  = require('dayjs');
+const dayjs = require('dayjs');
 const { fakerES: faker } = require('@faker-js/faker');
+const roundes = require('./rounds.json');
 
+const teamNames = new Set();
 
-let users = new Array(100).fill({}).map((_) => {
-  const type = faker.helpers.arrayElement(['listener', 'musician']);
-  const firstName = faker.person.firstName();
-  const lastName = faker.person.lastName();
-  const obj = {
-    id: faker.string.uuid(),
-    name: `${firstName} ${type === 'listener' ? lastName : ''}`,
-    email: faker.internet.email({
-      firstName: firstName.toLowerCase(),
-      lastName: lastName.toLowerCase(),
-      allowSpecialCharacters: false,
-      provider: 'unimet.edu.ve',
-    }),
-    username: faker.internet.userName(),
-    type,
-  };
-  // if (type === 'listener') {
-  //   obj.major = faker.helpers.arrayElement([
-  //     'Ingeniería Civil',
-  //     'Ingeniería Eléctrica',
-  //     'Ingeniería Mecánica',
-  //     'Ingeniería de Producción',
-  //     'Ingeniería Química',
-  //     'Ingeniería de Sistemas',
-  //     'Contaduría Publica',
-  //     'Economía Empresarial',
-  //     'Ciencias Administrativas',
-  //     'Psicología',
-  //     'Matematicas Industriales',
-  //     'Idiomar Modernos',
-  //     'Educación',
-  //     'Derecho',
-  //     'Estudios Liberales',
-  //   ]);
-  // } else {
-  //   obj.department = faker.helpers.arrayElement([
-  //     'Banca, Contabilidad y Auditoría',
-  //     'Economía',
-  //     'Gerencia y Emprendimiento',
-  //     'Finanzas',
-  //     'Mercadeo',
-  //     'Ciencias de la Educación',
-  //     'Ciencias del Comportamiento',
-  //     'Desarrollo Integral',
-  //     'Humanidades',
-  //     'Física',
-  //     'Inglés',
-  //     'Lingüística',
-  //     'Matemáticas',
-  //     'Química',
-  //     'Estudios Internacionales',
-  //     'Estudios Jurídicos',
-  //     'Estudios Políticos',
-  //     'la Construcción y Desarrollo Sustentable',
-  //     'Energía y Automatización',
-  //     'Producción Industrial',
-  //     'Gestión de Proyectos y Sistemas',
-  //   ]);
-  // }
-  return obj;
+roundes.rounds.forEach((round) => {
+  round.matches.forEach((match) => {
+    teamNames.add(`${match.team1.code}_${match.team1.name}_${match.group}`);
+    teamNames.add(`${match.team2.code}_${match.team2.name}_${match.group}`);
+  });
 });
 
-
-const musicians = users.filter((obj) => obj.type ==='musician');
-const listeners = users.filter((obj) => obj.type === 'listener');
-
-const albums = new Array(300).fill({}).map((_) => {
-  const name = faker.word.words(3);
-  const obj = {
+const teams = Array.from(teamNames).map((team) => {
+  const [code, name, group] = team.split('_');
+  return {
     id: faker.string.uuid(),
+    code,
     name,
-    description: faker.lorem.paragraphs(2),
-    cover: faker.image.urlPlaceholder({
-      height: 800,
-      width: 800,
-      text: name,
-      format: 'jpg',
-    }),
-    published: faker.date.past().toISOString(),
-    genre: faker.music.genre(),
-    artist: faker.helpers.arrayElement(musicians).id,
-    tracklist: new Array(faker.number.int({ min: 1, max: 12 }))
-      .fill({})
-      .map((_) => ({
-        id: faker.string.uuid(),
-        name: faker.word.words(3),
-        duration: dayjs(
-          new Date(
-            2024,
-            1,
-            15,
-            0,
-            faker.number.int({ min: 1, max: 5 }),
-            faker.number.int({ min: 0, max: 59 }),
-            0
-          )
-        ).format('mm:ss'),
-        link: faker.helpers.arrayElement([
-          'https://soundcloud.com/luk_music/meduza-control-piece-edx-jaded?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-          'https://soundcloud.com/calvinharris/desire-with-sam-smith?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-          'https://soundcloud.com/luk_music/elderbrook-dababy-why-do-we-shake-in-the-cold-practice-luk-mashup-remix?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-          'https://soundcloud.com/luk_music/luk-feat-ellie-may-wicked-game?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-          'https://soundcloud.com/ginchiestrecords/ginchy-gxd-feat-yasmin-jane-as-the-rush-comes-radio-edit?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-          'https://soundcloud.com/jaxonmase/cola-x-ferrari-horses?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-          'https://soundcloud.com/jerzybulx/thebusiness?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-          'https://soundcloud.com/3uki/dua-lipa-houdini-3uki-remix?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-          'https://soundcloud.com/luk_music/luk-feat-kimberley-dont-cha-1?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-          'https://soundcloud.com/itsproppa/proppagfys?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
-        ]),
-      })),
+    group: String(group).replace('Group ', ''),
   };
-  return obj;
 });
 
-const songs = albums.flatMap((obj) => obj.tracklist);
 
-const playlists = new Array(100).fill({}).map((_) => {
-  const obj = {
+const stadiumInfo = [
+  {
+    name: 'Estadio Olímpico de Berlín',
+    city: 'Berlín',
+    capacity: [100, 20],
+  },
+  {
+    name: 'Allianz Arena',
+    city: 'Munich',
+    capacity: [100, 20],
+  },
+  {
+    name: 'Signal Iduna Park',
+    city: 'Dortmund',
+    capacity: [100, 20],
+  },
+  {
+    name: 'MHPArena',
+    city: 'Stuttgart',
+    capacity: [100, 20],
+  },
+  {
+    name: 'Veltins-Arena',
+    city: 'Gelsenkirchen',
+    capacity: [100, 20],
+  },
+  {
+    name: 'Volksparkstadion',
+    city: 'Hamburgo',
+    capacity: [100, 20],
+  },
+  {
+    name: 'Deutsche Bank Park',
+    city: 'Fráncfort del Meno',
+    capacity: [100, 20],
+  },
+  {
+    name: 'Estadio Rhein Energie',
+    city: 'Colonia',
+    capacity: [100, 20],
+  },
+  {
+    name: 'Red Bull Arena',
+    city: 'Leipzig',
+    capacity: [100, 20],
+  },
+  {
+    name: 'Merkur Spiel-Arena',
+    city: 'Düsseldorf',
+    capacity: [100, 20],
+  },
+];
+
+function generateProduct() {
+  return {
+    name: faker.commerce.productName(),
+    quantity: faker.number.int({ min: 15, max: 15000 }),
+    price: faker.commerce.price(),
+    stock: faker.number.int({min: 100, max: 500}),
+    adicional: faker.helpers.arrayElement([
+      `alcoholic`,
+      `non-alcoholic`,
+      `package`,
+      `plate`,
+    ]),
+  };
+}
+
+function generateRestaurants() {
+  const products = [];
+  for (let i = 0; i < faker.number.int({min: 10, max: 20}); i++) {
+    products.push(generateProduct());
+  }
+  return {
+    name: faker.company.name(),
+    products,
+  };
+}
+
+const stadiums = stadiumInfo.map((stadium) => {
+  let restaurants = [];
+  for (let i = 0; i < faker.number.int({ min: 1, max: 10 }); i++) {
+    restaurants.push(generateRestaurants());
+  }
+  return {
     id: faker.string.uuid(),
-    name: faker.word.words(3),
-    description: faker.lorem.paragraphs(2),
-    creator: faker.helpers.arrayElement(listeners).id,
-    tracks: new Array(faker.number.int({ min: 10, max: 100 })).fill({}).map((_) => faker.helpers.arrayElement(songs).id),
+    name: stadium.name,
+    city: stadium.city,
+    capacity: [faker.number.int({ min: 10, max: 1000 }), faker.number.int({min: 10, max: 500})],
+    restaurants,
   };
-  return obj;
 });
 
-fs.writeFileSync('./users.json', JSON.stringify(users, null, 2));
-fs.writeFileSync('./albums.json', JSON.stringify(albums, null, 2));
-fs.writeFileSync('./playlists.json', JSON.stringify(playlists, null, 2));
+const matches = roundes.rounds.flatMap((round) =>
+  round.matches.map((match) => {
+    const team1 = teams.find((team) => team.code === match.team1.code);
+    const team2 = teams.find((team) => team.code === match.team2.code);
+    return {
+      id: faker.string.uuid(),
+      number: match.num,
+      home: team1,
+      away: team2,
+      date: match.date,
+      group: match.group,
+      stadium_id: faker.helpers.arrayElement(stadiums).id,
+    };
+  })
+);
+
+fs.writeFileSync('teams.json', JSON.stringify(teams, null, 2));
+fs.writeFileSync('matches.json', JSON.stringify(matches, null, 2));
+fs.writeFileSync('stadiums.json', JSON.stringify(stadiums, null, 2));

@@ -1,76 +1,81 @@
-# API Proyecto: Metrotify 🎵
+# API Proyecto: Euro 2024 ⚽️
 
-## Usuarios
+## Equipos
 
-Para realizar la consulta utilice el siguiente enlace [https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/users.json](https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/users.json) le devolverá una lista de json como el siguiente:
+Deberá hacer una petición GET al url [https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/teams.json](https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/teams.json)
+
+Tendrá una respuesta conformada por una lista de diccionarios, los cuales tienen la siguiente estructura:
 
 ```json
 [
   {
-    "id": "1640321f-b47d-4164-9357-92ebf9f8d278",
-    "name": "Lucía ",
-    "email": "lucia66@unimet.edu.ve",
-    "username": "Ines.GalvanFlorez76",
-    "type": "musician"
+    "id": "31c88261-1efd-444e-95ac-b7c1cd034bfd",
+    "code": "GER",
+    "name": "Germany",
+    "group": "A"
   }
 ]
 ```
 
-## Albums
+## Estadios y Restaurantes
 
-Para realizar la consulta utilice el siguiente enlace [https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/albums.json](https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/albums.json) le devolverá una lista de json como el siguiente:
+Deberá hacer una petición GET al url [https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/stadiums.json](https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/stadiums.json)
+
+Tendrá una respuesta conformada por una lista de diccionarios, los cuales tienen la siguiente estructura:
 
 ```json
 [
   {
-    "id": "b48bf9e9-cff4-4313-a61f-4d39b9a40ce2",
-    "name": "fry oh on",
-    "description": "Vitium ullam appello abbas vito abeo thesaurus denego corona appositus. Contigo conscendo acceptus comitatus. Aequitas tandem vilitas natus triduana ater.\nCorona patrocinor complectus tot. Cornu aspernatur crebro bellicus minus crepusculum caecus. Officiis est unus valetudo praesentium verto.",
-    "cover": "https://via.placeholder.com/800x800/c618ee/da0cdb.jpg?text=fry%20oh%20on",
-    "published": "2023-05-05T12:35:16.952Z",
-    "genre": "Folk",
-    "artist": "c1143b59-f6ad-4e21-9981-86e8e54cb786",
-    "tracklist": [
+    "id": "c8d1b19a-8262-4699-b7cb-7f0ed8659079",
+    "name": "Estadio Olímpico de Berlín",
+    "city": "Berlín",
+    "capacity": [849, 241],
+    "restaurants": [
       {
-        "id": "8a6dd82c-058c-4349-a561-3b4ddcb48544",
-        "name": "camp whenever hm",
-        "duration": "01:44",
-        "link": "https://soundcloud.com/jerzybulx/thebusiness?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
-      },
-      {
-        "id": "df8c1cfe-9daa-4155-aad4-78127fd4f234",
-        "name": "although lopsided indeed",
-        "duration": "04:53",
-        "link": "https://soundcloud.com/luk_music/meduza-control-piece-edx-jaded?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
-      },
-      {
-        "id": "205cd94a-3902-4543-830e-24ec27dea948",
-        "name": "serious focused excepting",
-        "duration": "02:02",
-        "link": "https://soundcloud.com/ginchiestrecords/ginchy-gxd-feat-yasmin-jane-as-the-rush-comes-radio-edit?in=luk_music/sets/ibiza-techno-house-2024-summer-mix&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
-      },
+        "name": "Armas y Montemayor",
+        "products": [
+          {
+            "name": "Artesanal Metal Bacon",
+            "quantity": 10132,
+            "price": "522.00",
+            "adicional": "non-alcoholic",
+            "stock": 15
+          }
+        ]
+      }
     ]
-  },
+  }
 ]
 ```
 
-## Playlist
+La capacidad del estadio esta data de la forma `[general, vip]` lo que significa que el primer elemento de la lista son la cantidad de boletos de la sección general y el segundo la cantidad de boletos VIP. Todas las filas del estadio serán de 10 asientos.
 
-Para realizar la consulta utilice el siguiente enlace [https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/playlists.json](https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/playlists.json) le devolverá una lista de json como el siguiente:
+En adicional, se encuentra la información `adicional` referente a `alcoholic`, `non-alcoholic`, `package` y `plate`
+
+## Partidos
+
+Deberá hacer una petición GET al url [[https://raw.githubusercontent.com/Algoritmos-y-Programacion-2223-1/api-proyecto/main/](https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/)matches.json](https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/matches.json)
+
+Tendrá una respuesta conformada por una lista de diccionarios, los cuales tienen la siguiente estructura:
 
 ```json
 [
   {
-    "id": "b7efefc6-96b4-4a5a-a92d-569f65c495ef",
-    "name": "toward sharply eek",
-    "description": "Viscus tenuis statua complectus suffoco congregatio civis cohors. Adflicto absconditus venustas contabesco. Curtus conspergo adficio utpote cruentus suadeo.\nVelut vaco valens autem consequatur carpo dicta. Torrens conventus sui pel verbera modi umbra labore. Audax adficio atque casus absorbeo defleo aliqua solitudo consectetur.",
-    "creator": "dac02f42-cd47-44cd-8f49-96bc07fca2ef",
-    "tracks": [
-      "58578514-00ae-42fb-9b8f-0ed4a2df3839",
-      "7d5b5189-7639-48c9-98a9-17c2fc7b5bb0",
-      "de6768c5-0564-42f2-bef4-3375965ec058",
-      "7aa3e3d9-68e9-4897-8510-cd1595007f1e"
-    ]
+    "id": "75b9a987-38a0-4470-8b6c-3d7e7efe18a1",
+    "number": 1,
+    "home": {
+      "id": "a4d9cfd7-ee66-42c5-a863-06e2426f12ab",
+      "code": "GER",
+      "name": "Germany"
+    },
+    "away": {
+      "id": "021b109e-0fa6-451a-b78e-38f43548130f",
+      "code": "SCO",
+      "name": "Scotland"
+    },
+    "date": "2024-06-14",
+    "group": "Group A"
   }
+  // ...
 ]
 ```
