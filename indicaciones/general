@@ -1,0 +1,25 @@
+1. Gestión de productos
+2. Gestión de ventas
+3. Gestión de clientes
+4. Gestión de pagos
+5. Gestión de envíos
+6. Indicadores de gestión (estadísticas)
+
+Observaciones
+
+ Posee una API en donde podrás obtener toda su información:
+* Documentación: 
+    https://github.com/algoritmos-y-Programacion/api-proyecto
+
+* La API tiene que funcionar como una opción de pre-cargado de datos antes de empezar a usar el programa, es decir esta opción crea el estado inicial del programa, posteriormente no se debe usar la API a menos que se quiera borrar los datos y cargar su estado inicial.
+
+* El estado del programa debe guardarse utilizando archivo de texto en formato json.
+
+* Se deben usar los conceptos de programación orientado a objetos
+
+* Antes de realizar el código, es imperante que realicen un diagrama de clases y que la implementación de su proyecto sea uno a uno con el diagrama
+
+* Se evaluará que el código este comentado (docstring)
+* Se evaluará que el sistema contenga validaciones
+* El proyecto deberá ser entregado a más tardar el 24 de noviembre de 2024 a las 11:59PM
+
